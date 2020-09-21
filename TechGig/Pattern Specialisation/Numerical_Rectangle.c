@@ -42,8 +42,8 @@ int main(int argc, char *a[])
 {	int n;
 	scanf("%d",&n);
 	for(int i=1;i<=n;i++){
-		for(int j=1;j<=n;j++){
-			if(j==n)
+		for(int j=1;j<=5;j++){
+			if(j==5)
 				printf("%d\n",i);
 			else
 				printf("%d ",i);
