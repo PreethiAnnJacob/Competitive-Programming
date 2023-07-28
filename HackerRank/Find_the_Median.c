@@ -1,6 +1,6 @@
 // Find the median of the array: Restriction arr_count is odd and within Int limit
-// Using Selection Sort, one of the testcases failed since more time was taken. 
-// Hence using qsort() from stdlib.h library
+// Using Selection Sort, 1/4 of the testcases failed since more time was taken. 
+// Hence using qsort() from stdlib.h library. All 4 testcases successful Score:100
 
 #include <assert.h>
 #include <ctype.h>
