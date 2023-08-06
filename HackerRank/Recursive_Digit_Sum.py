@@ -62,7 +62,7 @@ import sys
 #     if n==0: n=9
 #     return n
 
-def superDigit(n, k):
+def superDigit(n, k): # Score=100
     d = str(k*sum(map(int, n)))
     while len(d) > 1:
         d = str(sum(map(int, d)))
