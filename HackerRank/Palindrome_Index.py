@@ -8,7 +8,7 @@ s="bcbc"
 Either remove 'b' at index 0 or 'c' at index 3.
 
 Function Description
-Complete the palindromIndex function in the editor below.
+Complete the palindromeIndex function in the editor below.
 palindromeIndex has the following parameters:
   string s: a string to analyze
 Returns
