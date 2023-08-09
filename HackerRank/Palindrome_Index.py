@@ -113,7 +113,7 @@ import sys
 #---------------------------------------------------------
 
 #-------------------------------------------------------------------
-# #Try 4: 10/15 testcases passed: Still 1 wrong. Rest TLE
+# # Try 4: Score 66.7/100.    10/15 testcases passed: Still 1 wrong. Rest TLE
 
 # def palindromeIndex(s):
 #     # Write your code here
