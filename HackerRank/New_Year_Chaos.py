@@ -116,7 +116,7 @@ import sys
     
 # Method 3: Score=100
 # Trying out O(n) method:
-# - Optimize Method 2 for bribes by Keeping track of the two smallest numbers + 
+# - Optimize Method 2 for bribes calculation: by Keeping track of the two smallest numbers 
 # - Use Method 1 for chaos: chaos if position difference>2. (Note: Sorted array is actually list with index+1)
 def minimumBribes(q): 
     # Write your code here  
