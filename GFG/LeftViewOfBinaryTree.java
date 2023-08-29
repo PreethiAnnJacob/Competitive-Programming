@@ -229,7 +229,7 @@ class Tree
                     while(temp!=null) // Add the rest of the elements in same level into queue. Note: Here null corresponds to the delimiter used with queue
                     {   if(temp.left!=null)     q.add(temp.left);
                         if(temp.right!=null)    q.add(temp.right);
-                        q.remove();   // Remove item from previous level
+                        q.remove();   // Remove the parent from previous level
                         temp=q.peek(); 
                     }
                     q.add(null);// set delimiter since all elements in current level is traversed
