@@ -232,7 +232,7 @@ class Tree
                         q.remove();   // Remove item from previous level
                         temp=q.peek(); 
                     }
-                    q.add(null);// set delimiter for next level
+                    q.add(null);// set delimiter since all elements in current level is traversed
                 }
                 q.remove(); // Remove the delimiter for the finished level
             }
