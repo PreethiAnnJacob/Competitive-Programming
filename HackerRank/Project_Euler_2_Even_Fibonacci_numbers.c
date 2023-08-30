@@ -58,3 +58,25 @@ int main(){
         printf("%lld\n",sum[a0]);
     return 0;
 }
+
+//Try 2: 6/6 testcases passed. Idea: Instead of using fibo[n], use fibo[3] or just three variables. Also noticed that long long datatype doesn't make any difference. Changed to long
+int main(){
+    int t; 
+    scanf("%d",&t);
+    long sum[t];
+    for(int a0 = 0; a0 < t; a0++){
+        long n; 
+        scanf("%ld",&n);
+        long a=1,b=2; sum[a0]=2;
+        while(true)
+        {   long c=a+b;
+            if (c>n)  break;
+            if (c%2==0)  sum[a0]+=c;
+            a=b;
+            b=c;
+        }
+    }
+    for(int a0 = 0; a0 < t; a0++)
+        printf("%ld\n",sum[a0]);
+    return 0;
+}
