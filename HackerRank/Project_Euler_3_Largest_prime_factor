@@ -57,3 +57,30 @@ int main(){
         printf("%ld\n",lpf[a0]);
     return 0;
 }
+
+//Try 2: Same 5/6 testcases passed. Testcases#6 shows TLE 
+int main(){
+    int t; 
+    scanf("%d",&t);
+    long lpf[t];
+    for(int a0 = 0; a0 < t; a0++){
+        long n; 
+        scanf("%ld",&n);
+        lpf[a0]=1;
+        for(int i=2;i<=n;i++)
+        {   if(n%i==0)
+            {   int prime=1;
+                for(int j=2;j<=sqrt(i);j++)
+                    if(i%j==0)  {prime=0;break;}
+                if(prime==1)
+                {   lpf[a0]=i;
+                    n=n/i;
+                }
+            }
+        }
+    }
+    for(int a0 = 0; a0 < t; a0++)
+        printf("%ld\n",lpf[a0]);
+    return 0;
+}
+
