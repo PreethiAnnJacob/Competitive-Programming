@@ -108,3 +108,23 @@ Prime factor of 17 is 17 itself, hence largest is 17.
 //     return 0;
 // }
 
+//Try 4: 6/6/ testcases passed
+int main(){
+    int t; 
+    scanf("%d",&t);
+    for(int a0 = 0; a0 < t; a0++){
+        long n; 
+        scanf("%ld",&n);
+        long lpf=1;
+        for(int i=2;i<=sqrt(n);i++)  //Idea1: Check for factors only till sqrt(n)
+        {   while(n%i==0)            //Idea2: If a factor is found, divide all multiples of it from n. Thats the new n.
+            {   lpf=i;
+                n=n/i;               
+            }
+        }
+        if(n>1)  lpf=n;              //if n=1, it means so far we checked all the possible factors. eg. 125=5x5x5
+                                     //Otherwise, Since we are considering sqrt(n) as boundary condition, there is a chance that we saw all the factors except the answer. e.g. 13195=5x7x13x29 and 10=2x5
+        printf("%ld\n",lpf);
+    }
+    return 0;
+}
