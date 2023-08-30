@@ -93,17 +93,17 @@ int main(){
         if (n==1)   printf("2\n");
         else if (n==2)   printf("3\n");
         else
-        {   int num=5; //since we know the next prime number is 5
-            int count=2; //since we already have 2 prime numbers ready i.e. 2 and 3.
+        {   int num=5;                                     //since we know the next prime number is 5
+            int count=2;                                   //since we already have 2 prime numbers ready i.e. 2 and 3.
             while(count<n) 
             {   int prime=1;
-                //Any prime number>3 can be expressed as 6k+1 or 6k-1(~6k+5)
-             
-                if (num%3==0) prime=0; //instead of "if (num%2==0 || num%3==0) prime=0;" 
-                //since only prime numbers less than 5 is 2 and 3. We have skipped the chances of even numbers by incrementing num by 2    
+                if (num%3==0) prime=0;                     //instead of "if (num%2==0 || num%3==0) prime=0;". Since only prime numbers less than 5 is 2 and 3. We have skipped the chances of even numbers by incrementing num by 2    
                 else
-                {   for(int i=5;i*i<=num;i=i+6)
-                        if(num%i==0||num%(i+2)==0)    {prime=0;break;}
+                {   for(int i=5;i*i<=num;i=i+6)            //Any prime number>3 can be expressed as 6k+1 or 6k-1(~6k+5). So to check if num is prime or not, instead of checking any num from 1 to num is a factor of num, we are checking if num has any prime factor
+                        if(num%i==0||num%(i+2)==0)         //Checking for (6k+5)~(6k-1) and (6k+7)~(6k+1)  
+                        {    prime=0;
+                             break;
+                        }
                 }
                 if (prime==1)   count++;
                 if(count==n)    printf("%d\n",num);
