@@ -128,27 +128,27 @@ int main(){
         printf("%d\n",maxproduct);
 
         //Try 6: 10/10 O(n) in best case. If too many zeroes are involved, O(n^2) --Revisiting Try 3 since Try 5 works -Why Try 3 did not work? 
-        long maxproduct=1;
-        for(int i=0;i<k;i++)
-        {   if (num[i]=='0')    {maxproduct=0;break;}
-            maxproduct*=(num[i]-'0');
-        }
-        long product=maxproduct;
-        for(int i=k;i<n;i++)
-        {   if (product!=0) 
-            {   if (num[i]=='0')    {product=0;/*break;*/}            // Change from Try 3 - here. No need of break TT
-                product = product/(num[i-k]-'0')*(num[i]-'0');     
-            }
-            else 
-            {   product=1;
-                for(int j=i-k+1;j<=i;j++)
-                {   if (num[j]=='0')    {product=0;break;}
-                    product*=(num[j]-'0');
-                }
-            }
-            if (product>maxproduct) maxproduct=product;
-        }
-        printf("%ld\n",maxproduct);
+        // long maxproduct=1;
+        // for(int i=0;i<k;i++)
+        // {   if (num[i]=='0')    {maxproduct=0;break;}
+        //     maxproduct*=(num[i]-'0');
+        // }
+        // long product=maxproduct;
+        // for(int i=k;i<n;i++)
+        // {   if (product!=0) 
+        //     {   if (num[i]=='0')    {product=0;/*break;*/}            // Change from Try 3 - here. No need of break TT
+        //         product = product/(num[i-k]-'0')*(num[i]-'0');     
+        //     }
+        //     else 
+        //     {   product=1;
+        //         for(int j=i-k+1;j<=i;j++)
+        //         {   if (num[j]=='0')    {product=0;break;}
+        //             product*=(num[j]-'0');
+        //         }
+        //     }
+        //     if (product>maxproduct) maxproduct=product;
+        // }
+        // printf("%ld\n",maxproduct);
         
     }
     return 0;
