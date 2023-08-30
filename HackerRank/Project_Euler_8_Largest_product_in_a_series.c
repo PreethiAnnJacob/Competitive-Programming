@@ -41,7 +41,6 @@ For 2709360626, 0 lies in all selection of 5 consequetive digits hence maximum p
 #include <limits.h>
 #include <stdbool.h>
 
-//Try1 : 1/10 testcase passed. Testcase#0 only passed. Rest show Runtime error.
 int main(){
     int t; 
     scanf("%d",&t);
@@ -51,14 +50,68 @@ int main(){
         scanf("%d %d",&n,&k);
         char* num = (char *)malloc(512000 * sizeof(char));
         scanf("%s",num);
-        int maxproduct=1;
-        for(int i=0;i<k;i++)
-            maxproduct*=(num[i]-'0');
-        for(int i=k,product=maxproduct;i<=n-k;i++)
-        {   product = product/(num[i-k]-'0')*(num[i]-'0');
+
+        //Try1 : 1/10 testcase passed. Testcase#0 only passed. Rest show Runtime error.
+        // int maxproduct=1;
+        // for(int i=0;i<k;i++)
+        //     maxproduct*=(num[i]-'0');
+        // for(int i=k,product=maxproduct;i<=n-k;i++)
+        // {   product = product/(num[i-k]-'0')*(num[i]-'0');
+        //     if (product>maxproduct) maxproduct=product;
+        // }
+        // printf("%d\n",maxproduct);
+
+        //Try 2: Same 1/10 passed. Error with n=5 k=3 num=10234 was also fixed. But same Testcase #1-#9 failed- Shows Wrong Answer.
+        // long maxproduct=1;
+        // for(int i=0;i<k;i++)
+        // {   if (num[i]=='0')    {maxproduct=0;break;}
+        //     maxproduct*=(num[i]-'0');
+        // }
+        // long product=maxproduct;
+        // for(int i=k;i<n;i++)
+        // {   if (product!=0) 
+        //     {   if (num[i]=='0')    {product=0;break;}
+        //         product = product/(num[i-k]-'0')*(num[i]-'0');     
+        //     }
+        //     else 
+        //     {   product=1;
+        //         for(int j=i-k+1;j<=i;j++)
+        //         {   if (num[j]=='0')    {product=0;break;}
+        //             product*=(num[j]-'0');
+        //         }
+        //     }
+        //     if (product>maxproduct) maxproduct=product;
+        // }
+        // printf("%ld\n",maxproduct);
+        
+        // Try 3: TLE for all 10 testcases
+        int maxproduct=1; 
+        for(int i=0;i<=n-k;i++)
+        {   int product=1;
+            for(int j=i;j<=i+k-1;i++)
+            {   product=product*(num[j]-'0');
+            }
             if (product>maxproduct) maxproduct=product;
         }
         printf("%d\n",maxproduct);
+        
     }
     return 0;
 }
+
+// int main(){
+//     int t; 
+//     scanf("%d",&t);
+//     for(int a0 = 0; a0 < t; a0++){
+//         int n; 
+//         int k; 
+//         scanf("%d %d",&n,&k);
+//         char* num = (char *)malloc(512000 * sizeof(char));
+//         scanf("%s",num);
+//         
+//     }
+//     return 0;
+// }
+
+
+
