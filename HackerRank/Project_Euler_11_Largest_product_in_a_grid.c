@@ -58,24 +58,24 @@ int main(){
     }
 
     //Try 1: 4/6 testcases passed. Testcase#3,#4: Wrong answer
-    int maxproduct=-1;
-    for(int i= 0; i < 20; i++)
-    {   for(int j = 0; j < 20; j++)
-        {   if(i<=16)
-            {   int prodv= grid[i][j] * grid[i+1][j] * grid[i+2][j] * grid[i+3][j];
-                if (prodv >maxproduct)  maxproduct=prodv;
-            }
-            if(j<=16)
-            {   int prodh= grid[i][j] * grid[i][j+1] * grid[i][j+2] * grid[i][j+3];
-                if (prodh >maxproduct)  maxproduct=prodh;
-            }
-            if(i<=16 && j<=16)
-            {   int prodd= grid[i][j] * grid[i+1][j+1] * grid[i+2][j+2] * grid[i+3][j+3];
-                if (prodd >maxproduct)  maxproduct=prodd;
-            }
-        }
-    }
-    printf("%d",maxproduct);
+    // int maxproduct=-1;
+    // for(int i= 0; i < 20; i++)
+    // {   for(int j = 0; j < 20; j++)
+    //     {   if(i<=16)
+    //         {   int prodv= grid[i][j] * grid[i+1][j] * grid[i+2][j] * grid[i+3][j];
+    //             if (prodv >maxproduct)  maxproduct=prodv;
+    //         }
+    //         if(j<=16)
+    //         {   int prodh= grid[i][j] * grid[i][j+1] * grid[i][j+2] * grid[i][j+3];
+    //             if (prodh >maxproduct)  maxproduct=prodh;
+    //         }
+    //         if(i<=16 && j<=16)
+    //         {   int prodd= grid[i][j] * grid[i+1][j+1] * grid[i+2][j+2] * grid[i+3][j+3];
+    //             if (prodd >maxproduct)  maxproduct=prodd;
+    //         }
+    //     }
+    // }
+    // printf("%d",maxproduct);
 
     //Try 2: 6/6 testcases passed. Modified Try 1 by Adding Diagonal Right sum too.
     int  maxproduct=-1;
