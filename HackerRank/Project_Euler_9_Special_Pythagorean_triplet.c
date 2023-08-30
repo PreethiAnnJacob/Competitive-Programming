@@ -20,22 +20,22 @@ int main(){
         int maxabc=-1;
         for(int c=n-3;c>=3;c--)
         {   for(int b=n-c-1;b>=2;b--)
-            {   int a=n-(b+c);
-                if (a*a+b*b==c*c)   
-                {   maxabc=a*b*c;
-                    a=b=1;  //To break from both loops
-                    break;
+            {   if (c>b)
+                {   int a=n-(b+c);
+                    if(b>a &&  (a*a+b*b==c*c) && (a*b*c>maxabc))    maxabc=a*b*c;
                 }
             }
         }
         printf("%d\n",maxabc);
-        
+
+        //Try 2:8/8 testcases passed. 
         int maxabc=-1;
-        for(int c=n-3;c>=3;c--)
-        {   for(int b=n-c-1;b>=2;b--)
-            {   if (c>b)
-                {   int a=n-(b+c);
-                    if(b>a &&  (a*a+b*b==c*c) && (a*b*c>maxabc))    maxabc=a*b*c;
+        if (n%2==0)
+        {   for (int a=1;a<=n/3;a++)
+            {   if ( (n*(n-2*a)) % (2*(n-a)) == 0 )
+                {   int b=(n*(n-2*a)) / (2*(n-a));
+                    int c=n-a-b;
+                    if (a*b*c>maxabc)   maxabc=a*b*c;
                 }
             }
         }
