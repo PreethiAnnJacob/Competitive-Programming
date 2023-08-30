@@ -85,10 +85,21 @@ int main(){
         // printf("%ld\n",maxproduct);
         
         // Try 3: TLE for all 10 testcases
-        int maxproduct=1; 
+        // int maxproduct=1; 
+        // for(int i=0;i<=n-k;i++)
+        // {   int product=1;
+        //     for(int j=i;j<=i+k-1;i++)
+        //     {   product=product*(num[j]-'0');
+        //     }
+        //     if (product>maxproduct) maxproduct=product;
+        // }
+        // printf("%d\n",maxproduct);
+
+        //Try 4: 10/10 working. But O(n^2)
+        int maxproduct=-1; 
         for(int i=0;i<=n-k;i++)
         {   int product=1;
-            for(int j=i;j<=i+k-1;i++)
+            for(int j=i;j<=i+k-1;j++)
             {   product=product*(num[j]-'0');
             }
             if (product>maxproduct) maxproduct=product;
@@ -98,20 +109,6 @@ int main(){
     }
     return 0;
 }
-
-// int main(){
-//     int t; 
-//     scanf("%d",&t);
-//     for(int a0 = 0; a0 < t; a0++){
-//         int n; 
-//         int k; 
-//         scanf("%d %d",&n,&k);
-//         char* num = (char *)malloc(512000 * sizeof(char));
-//         scanf("%s",num);
-//         
-//     }
-//     return 0;
-// }
 
 
 
