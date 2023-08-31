@@ -35,4 +35,7 @@ for i in range(n):
     sum=sum+num
 print(str(sum)[:10])
 
-#Try 2 in C
+# Try 2: in C: 0/3 cases passed. Wrong answer. Note: Value of sum is too much for any integer datatype to handle.
+
+# Try 3: In C: 3/3 testcases passed.
+# Idea : Consider the numbers as string. Sum two numbers = First Sum digitwise in reverse direction(Also,take care of carry). Now reverse that calculated sum. At last, show the first 10 digits.
