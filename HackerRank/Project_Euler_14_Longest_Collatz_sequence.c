@@ -183,10 +183,8 @@ int main() {
 int n_max=5000000;
 unsigned long long collatz[5000001]={};
 unsigned long long longest[5000001];
-
 unsigned long long next(unsigned long long n)
-{   if (n%2==0) return (n/2);
-    else        return (3*n+1);
+{   return (n%2==0) ? (n/2) : (3*n+1);
 }
 unsigned long long countCollatz(unsigned long long n)
 {   if (n>n_max)        return (1+countCollatz(next(n)));
@@ -198,16 +196,13 @@ int main() {
     for(int i=2;i<=n_max;i++)
     {   if (collatz[i]==0)
             collatz[i]=countCollatz(i); 
-        if(collatz[i]>=collatz[longest[i-1]])   longest[i]=i;
-        else                                    longest[i]=longest[i-1]; 
+        longest[i]= (collatz[i]>=collatz[longest[i-1]]) ? i : longest[i-1]; 
     }
-    
     int t; scanf("%d",&t);
     for(int a0=0;a0<t;a0++)
     {   int n; scanf("%d",&n);
         printf("%llu\n",longest[n]);
     }
-    
     return 0;
 }
 
