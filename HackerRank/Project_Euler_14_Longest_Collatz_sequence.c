@@ -73,6 +73,7 @@ containing  steps and is the longest for n<=10
 // }
 
 //Try 2: 1/13 passed. Testcase#1-#12 shows wrong answer
+// Fresh Idea: Create map initially for all possible values using recursion and memoization.
 // int next(n)
 // {   if (n%2==0) return (n/2);
 //     else        return (3*n+1);
@@ -84,19 +85,19 @@ containing  steps and is the longest for n<=10
 // }
 // int main() {
 //     /* Enter your code here. Read input from STDIN. Print output to STDOUT */
-    
+// 
 //     int n_max=5*10^6;
 //     int collatz[n_max+1];int longest[n_max+1];
 //     for(int i=1;i<=n_max;i++)
 //         collatz[i]=0;
-        
+// 
 //     collatz[1]=1;longest[1]=1;
 //     for(int i=2;i<=n_max;i++)
 //     {   collatz[i]=countCollatz(i,n_max,collatz);
 //         if(collatz[i]>=collatz[longest[i-1]])   longest[i]=i;
 //         else                                    longest[i]=longest[i-1]; 
 //     }
-    
+// 
 //     int t; scanf("%d",&t);
 //     for(int a0=0;a0<t;a0++)
 //     {   int n; scanf("%d",&n);
@@ -106,38 +107,39 @@ containing  steps and is the longest for n<=10
 //     return 0;
 // }
 
-// Try 3:  1/13 passed. TC #1-12: Segmentation fault. Score: 7.69/100
-// Fresh Idea: Create map initially for all possible values using recursion and memoization.
-// unsigned long long next(unsigned long long n)
-// {   if (n%2==0) return (n/2);
-//     else        return (3*n+1);
-// }
-// unsigned long long countCollatz(unsigned long long n, unsigned long long n_max,unsigned long long collatz[])
-// {   if (n>n_max)        return (1+countCollatz(next(n),n_max,collatz));
-//     if (collatz[n]==0)  collatz[n]=(1+countCollatz(next(n),n_max,collatz));
-//     return collatz[n];
-// }
-// int main() {
-//     /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+/**
+//Try 3:  1/13 passed. TC #1-12: Segmentation fault. Score: 7.69/100. Same as Try 2. Somehow error changed from wrong answer to segmentation fault.
+unsigned long long next(unsigned long long n)
+{   if (n%2==0) return (n/2);
+    else        return (3*n+1);
+}
+unsigned long long countCollatz(unsigned long long n, unsigned long long n_max,unsigned long long collatz[])
+{   if (n>n_max)        return (1+countCollatz(next(n),n_max,collatz));
+    if (collatz[n]==0)  collatz[n]=(1+countCollatz(next(n),n_max,collatz));
+    return collatz[n];
+}
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */
     
-//     int n_max=5*10^6;
-//     unsigned long long collatz[5*10^6+1]={};
-//     unsigned long long longest[5*10^6+1];
+    int n_max=5*10^6;
+    unsigned long long collatz[5*10^6+1]={};
+    unsigned long long longest[5*10^6+1];
     
-//     int t; scanf("%d",&t);
-//     for(int a0=0;a0<t;a0++)
-//     {   int n; scanf("%d",&n);
-//         collatz[1]=1;longest[1]=1;
-//         for(int i=2;i<=n;i++)
-//         {   collatz[i]=countCollatz(i,n_max,collatz); //printf("%llu ",collatz[i]);
-//             if(collatz[i]>=collatz[longest[i-1]])   longest[i]=i;
-//             else                                    longest[i]=longest[i-1]; 
-//         }
-//         printf("%llu\n",longest[n]);
-//     }
+    int t; scanf("%d",&t);
+    for(int a0=0;a0<t;a0++)
+    {   int n; scanf("%d",&n);
+        collatz[1]=1;longest[1]=1;
+        for(int i=2;i<=n;i++)
+        {   collatz[i]=countCollatz(i,n_max,collatz); //printf("%llu ",collatz[i]);
+            if(collatz[i]>=collatz[longest[i-1]])   longest[i]=i;
+            else                                    longest[i]=longest[i-1]; 
+        }
+        printf("%llu\n",longest[n]);
+    }
     
-//     return 0;
-// }
+    return 0;
+}
+*/
 
 // // Try 4: Modified Try 3: 9/13 passed. TC#9-12 shows TLE. Score: 69.23/100 
 // // Idea: In hackerrank, stack space is limited. If we declare arrays in function, stack space is used. Instead declare them globally, so that data segment is used.
