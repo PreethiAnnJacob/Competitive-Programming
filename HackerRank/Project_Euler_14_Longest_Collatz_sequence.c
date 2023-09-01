@@ -194,8 +194,7 @@ unsigned long long countCollatz(unsigned long long n)
 int main() {
     collatz[1]=1;longest[1]=1;
     for(int i=2;i<=n_max;i++)
-    {   if (collatz[i]==0)
-            collatz[i]=countCollatz(i); 
+    {   if (collatz[i]==0)    collatz[i]=countCollatz(i); 
         longest[i]= (collatz[i]>=collatz[longest[i-1]]) ? i : longest[i-1]; 
     }
     int t; scanf("%d",&t);
