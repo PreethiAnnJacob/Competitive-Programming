@@ -43,7 +43,7 @@ for i in range(int(input())):
     print(sd,end="\n")
 */
 
-//Try 2 in C. 1/10. TC#1-9:Wrong answer
+/*//Try 2 in C. 1/10. TC#1-9:Wrong answer. Score:0
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
@@ -64,6 +64,44 @@ int main() {
     }
     return 0;
 }
+*/
+
+//Try 3: 4/10 passed. TC #4-#9 due to TLE. Score: 33.33/100
+//Idea: Convert to string and do multiplication step by step
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+void twice(char str[])
+{   int sd=0;
+    int c=0;int i;
+    for(i=0;i<strlen(str);i++)
+    {   int d=str[i]-'0';   d=d*2;
+        if (c==1)           d++;
+        if (d>9)    {c=1;d=d%10;} 
+        else        c=0;
+        str[i]=d+'0';
+    }
+    if (c==1)   str[i++]='1';
+    str[i]='\0';
+}
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */ 
+    int t;scanf("%d",&t);
+    for (int a0=0;a0<t;a0++)
+    {   int n; scanf("%d",&n);
+        char str[400]="1";
+        for(int i=1;i<=n;i++)
+            twice(str);
+        int sd=0;
+        for(int i=0;i<strlen(str);i++)
+            sd+=str[i]-'0';
+        printf("%d\n",sd);
+    }
+    return 0;
+}
+
 
 
 
