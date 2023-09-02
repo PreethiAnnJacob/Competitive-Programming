@@ -92,7 +92,7 @@ int main() {
     int t;scanf("%d",&t);
     for (int a0=0;a0<t;a0++)
     {   int n; scanf("%d",&n);
-        char str[400]="1";
+        char str[4000]="1";
         for(int i=1;i<=n;i++)
             twice(str);
         int sd=0;
