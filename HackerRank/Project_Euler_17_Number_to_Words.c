@@ -112,8 +112,8 @@ char* numToString(long n)
         strcat(temp,special[specialPos]);
     }
     else if (n>9)
-    {   if(n>=11 && n<=19)      strcat(temp,elevenToNinteeen[n%placePos]);
-        else                    strcat(temp,multiplesOfTen[n/placePos]);
+    {   if(n>=11 && n<=19)      strcat(temp,elevenToNinteeen[n%pos]);
+        else                    strcat(temp,multiplesOfTen[n/pos]);
     }
     else    strcat(temp,onetoNine[n]);  
     if(n>20 && n%pos!=0) 
