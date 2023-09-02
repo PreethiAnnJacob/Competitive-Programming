@@ -45,4 +45,4 @@ for _ in range(int(input())):
     n,m=map(int,input().split())
     print ((factorial(n+m)//factorial(m)//factorial(n))%(10**9+7))
 
-#Try 2 in C
+#Try 2 and Try 3 in C
