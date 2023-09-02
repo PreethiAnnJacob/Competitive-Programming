@@ -66,6 +66,7 @@ int main() {
 }
 */
 
+/*
 //Try 3: 4/10 passed. TC #4-#9 due to TLE. Score: 33.33/100
 //Idea: Convert to string and do multiplication step by step
 #include <stdio.h>
@@ -101,7 +102,43 @@ int main() {
     }
     return 0;
 }
+*/
 
+//Try 4: 10/10. Score:100. Idea: Save intermediate values dynamically to array
+// Note: str size kept as 4000 since 2^(10^4) has 3011 digits(Calculation: log(2^(10^4)))+1 = (10^4)log 2 +1 = (10^4)(0.301029996)+1 = 3011 
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int sod[10001]={};//size=index0 + index1 till 10000
+int twice(char str[])
+{   int sd=0;   int c=0;    int i;
+    for(i=0;i<strlen(str);i++)
+    {   int d=str[i]-'0';   d=d*2+c;
+        if (d>9)    {c=1;d=d%10;} 
+        else        c=0;
+        str[i]=d+'0';
+        sd=sd+d;
+    }
+    if (c==1)   {str[i++]='1';sd++;}
+    str[i]='\0';
+    return sd;
+}
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */ 
+    char str[4000]="2";  
+    sod[0]=1;    sod[1]=2;
+    for(int i=2;i<=10000;i++)
+        sod[i] = twice(str);
+    
+    int t;scanf("%d",&t);
+    for (int a0=0;a0<t;a0++)
+    {   int n; scanf("%d",&n);
+        printf("%d\n",sod[n]);
+    }
+    return 0;
+}
 
 
 
