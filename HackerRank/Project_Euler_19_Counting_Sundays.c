@@ -65,7 +65,7 @@ For testcase 1, we have the following sundays :-
 1 August 1909
 */
 
-//Try 1: 3/7. TC#4,5,6,7 failed due to TLE. Score: 28.57/100
+//--------------------------Try 1: 3/7. TC#4,5,6,7 failed due to TLE. Score: 28.57/100
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
@@ -136,3 +136,72 @@ int main() {
     }
     return 0;
 }
+//---------------------------------------------------------
+
+//------------------------------------- Try 2: 4/8 TC passed. Passed: TC#1,5,6,7. Failed due to Wrong answer: TC#0,2,3,4. Score:57.14/100.
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+//Return yes if date1<=date2
+int isLE(long y1,int m1,int d1,long y2,int m2,int d2)
+{   if (y1<y2)   return 1;
+    if (y1==y2)
+    {   if(m1<m2)   return 1;
+        if(m1==m2)  {if (d1<=d2) return 1;}
+    }
+    return 0;
+}
+//Return next first-of-the-month date
+void next(long *y,int *m,int *d)
+{   *d=1;
+    if (*m==12) (*y)++;
+    *m=(*m%12) + 1;
+}
+//Return yes if YY is Leap Year
+int isLeapYear(long y)
+{   if (y%400==0)               return 1;
+    if (y%4==0 && y%100!=0)     return 1;
+    return 0;
+}
+//Return no of odd days for a given YY/MM from YY/Jan
+int oddDaysMth(long y,int m)
+{   int oddMthNonLeap[12]={3,3,6,1,4,6,2,5,0,3,5,1};
+    int oddMthLeap[12]={3,4,0,2,5,0,3,6,1,4,6,2};
+    if (isLeapYear(y))  return oddMthLeap[m-1];
+    else                return oddMthNonLeap[m-1];
+}
+//Calculate no of odd days for a given date
+int oddDays(long y,int m,int d)
+{   int odd=0;
+    int nc=y-1;//nc=years not checked
+    int oddCentury[4]={5,3,1,0};
+    for(int i=400; i>=100 && nc >=i ;i=i-100)
+    {   odd = (odd + oddCentury[(i/100)-1] * (nc/i) )%7;
+        nc = nc%i;
+    }
+    if (nc>0)
+    {   int leap = nc/4;
+        odd=(odd+nc+leap)%7;
+    }
+    if (m>1)    odd = (odd+oddDaysMth(y,m-1))%7;
+    odd=(odd+d)%7;
+    return odd;
+}
+int main() {
+    int t,m1,d1,m2,d2;  long y1,y2;
+    scanf("%d",&t);
+    for(int a0=0;a0<t;a0++)
+    {   scanf("%ld%d%d",&y1,&m1,&d1);
+        scanf("%ld%d%d",&y2,&m2,&d2);
+        int count=0;
+        if (d1!=1)  next(&y1,&m1,&d1);
+        while(isLE(y1,m1,d1,y2,m2,d2))
+        {   if(oddDays(y1,m1,d1)==0)    count++;
+            next(&y1,&m1,&d1);
+        }
+        printf("%d\n",count);
+    }
+    return 0;
+}
+
