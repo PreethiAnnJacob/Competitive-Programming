@@ -46,3 +46,40 @@ for _ in range(int(input())):
     print(sd,end="\n");
 */
 
+//Try 2 in C: 4/4 TC passed. Score:100/100
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+// Multiply number stored as array with integer = array*num.
+// e.g.789*10=7890 => {9,8,7}*10={0,9,8,7}
+int multiply(int *array,int arraysize,int num)
+{   int carry=0;
+    for(int i=0;i<arraysize;i++)
+    {   int temp=array[i]*num + carry;
+        array[i]=temp%10;
+        carry=temp/10;
+    }
+    while(carry>0)    
+    {   array[arraysize++]=carry%10;
+        carry=carry/10;
+    }
+    return arraysize;
+}
+int main() {
+    int t,n;  scanf("%d",&t);
+    for(int a0=0;a0<t;a0++)
+    {   scanf("%d",&n);
+        int *fac=malloc(2600*sizeof(int)); //no of digits in 1000! is 2568 digits
+        fac[0]=1; int facsize=1;
+        for(int i=1;i<=n;i++)
+            facsize=multiply(fac,facsize,i);
+        int sd=0;
+        for(int i=0;i<facsize;i++)
+            sd+=fac[i];
+        printf("%d\n",sd);
+    }
+    return 0;
+}
+
+
