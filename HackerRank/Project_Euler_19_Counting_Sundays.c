@@ -139,7 +139,7 @@ For testcase 1, we have the following sundays :-
 // //---------------------------------------------------------
 
 // //------------------------------------- Try 2: 4/8 TC passed. Passed: TC#1,5,6,7. Failed due to Wrong answer: TC#0,2,3,4. Score:57.14/100.
-// // Idk why this worked for these test cases. Anyway it is wrong 
+// // Idk why this worked for these test cases. Anyway it is wrong! The TLE was handled properly by reducing the loops
 // #include <stdio.h>
 // #include <string.h>
 // #include <math.h>
@@ -207,7 +207,8 @@ For testcase 1, we have the following sundays :-
 // }
 // //---------------------------------------Try 2 end
 
-//--------------------------------------Try 3: 8/8 TC passed. Score:100/100
+//--------------------------------------Try 3: 8/8 TC passed. Score:100/100 
+// Main idea from Try 1 + Time Reduction ideas from Try 2
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
@@ -243,7 +244,7 @@ int oddDaysMth(long y,int m)
 //Calculate no of odd days for a given date
 int oddDays(long y,int m,int d)
 {   int odd=0;
-    long nc=y-1;//nc=years not checked
+    long nc=y-1;//nc=years not checked                            //HERE: Remember to keep it long. Thats why those unknown "wrong answer"errors were happening
     int oddCentury[4]={5,3,1,0};
     for(int i=400; i>=100 ;i=i-100)
     {   if (nc>=i)
