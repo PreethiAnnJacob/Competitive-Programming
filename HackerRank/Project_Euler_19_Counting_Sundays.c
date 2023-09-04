@@ -223,6 +223,7 @@ int isLE(long y1,int m1,int d1,long y2,int m2,int d2)
     return 0;
 }
 //Return next first-of-the-month date
+//Use pointer to return multiple values from the function
 void next(long *y,int *m,int *d)
 {   *d=1;
     if (*m==12) (*y)++;
@@ -234,27 +235,36 @@ int isLeapYear(long y)
     if (y%4==0 && y%100!=0)     return 1;
     return 0;
 }
-//Return no of odd days for a given YY/MM from YY/Jan
+//Return no of cumulative odd days for a given YY/MM from YY/Jan
 int oddDaysMth(long y,int m)
-{   int oddMthNonLeap[12]={3,3,6,1,4,6,2,5,0,3,5,1};
+{   int oddMthNonLeap[12]={3,3,6,1,4,6,2,5,0,3,5,1} // e.g. oddMthNonLeap[March]=oddMthNonLeap[2]=(31+28+31)%7=6
     int oddMthLeap[12]={3,4,0,2,5,0,3,6,1,4,6,2};
     if (isLeapYear(y))  return oddMthLeap[m-1];
     else                return oddMthNonLeap[m-1];
 }
 //Calculate no of odd days for a given date
+//no of odd days till (1807/4/12) = 1600yrs     + 200 yrs     + 6 yrs                         + (Jan,Feb,Mar) of 1807 + 12 days in Apr 1807
+//                                = 0 odd days  + 3 odd days  + (1 leap yr + 5 non-leap yrs)  + (31+28+31) days       +  5 odd days
+//                                = 0 odd days  + 3 odd days  + (1*2odd days+5*1odd day)      + 6 odd days            +  5 odd days
+//                                = 0 odd days  + 3 odd days  + (0 odd day)                   + 6 odd days            +  5 odd days
+//                                = 0 odd days        
 int oddDays(long y,int m,int d)
 {   int odd=0;
-    long nc=y-1;//nc=years not checked                            //HERE: Remember to keep it long. Thats why those unknown "wrong answer"errors were happening
-    int oddCentury[4]={5,3,1,0};
+    long nc=y-1;//nc=years not checked                            //HERE: Remember to keep the datatype long for intermediate calculation too. Thats why those unknown "wrong answer"errors were happening
+    int oddCentury[4]={5,3,1,0}; //No of odd days in 100years,200years,300yrs,400yrs is 5,3,1,0 respectively.
     for(int i=400; i>=100 ;i=i-100)
     {   if (nc>=i)
-        {   odd = (odd + oddCentury[(i/100)-1] * (nc/i) )%7;
+        {   //odd = (odd + oddCentury[(i/100)-1] * (nc/i) )%7; 
+            //---Here,(nc/i) will be >1 only for i=400 but has 0 odd days. For i=300,200,100, nc/i will be either 0 or 1. So replacing line as below:
+            odd = (odd + oddCentury[(i/100)-1] )%7;
             nc = nc%i;
         }
     }
     if (nc>0)
     {   int leap = nc/4;
-        odd=(odd+nc+leap)%7;
+        //No of odd days in non leap year=1 and in Leap Yr=2
+        // no of odd days = 1x(no of non leap yrs) + 2x(no of leap yrs) = non-leap+ 2*leap = (nc-leap)  + 2*leap = nc+leap
+        odd=(odd+nc+leap)%7; 
     }
     if (m>1)    odd = (odd+oddDaysMth(y,m-1))%7;
     odd=(odd+d)%7;
@@ -267,10 +277,10 @@ int main() {
     {   scanf("%ld%d%d",&y1,&m1,&d1);
         scanf("%ld%d%d",&y2,&m2,&d2);
         int count=0;
-        if (d1!=1)  next(&y1,&m1,&d1);
-        while(isLE(y1,m1,d1,y2,m2,d2))
-        {   if(oddDays(y1,m1,d1)==0)    count++;
-            next(&y1,&m1,&d1);
+        if (d1!=1)  next(&y1,&m1,&d1);                // Initialisation: date = (date1 itself if its first of month) OR (next 1st of Mth)
+        while(isLE(y1,m1,d1,y2,m2,d2))                // Condition: date<=date2
+        {   if(oddDays(y1,m1,d1)==0)    count++;      // Body: If date=Sunday, count++
+            next(&y1,&m1,&d1);                        // date = next 1st of month
         }
         printf("%d\n",count);
     }
