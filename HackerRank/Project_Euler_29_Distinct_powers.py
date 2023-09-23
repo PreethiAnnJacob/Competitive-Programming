@@ -27,7 +27,7 @@ Sample Output
 '''
 
 
-# Try 1: TC:3/21, Rest:TLE
+# Try 1: TC:6/21, Rest:TLE
 n =  int(input())
 list =[]
 for a in range(2,n+1):
