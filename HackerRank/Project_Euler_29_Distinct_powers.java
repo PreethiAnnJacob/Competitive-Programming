@@ -121,7 +121,7 @@ public class Solution {
         for (int a=2;a<=n;a++)
         {   boolean found=false;//flag for another smaller base
             int old_b=0;
-            //Find old_a and old_b such that old_a**old_b=a e.g. 2**4=16
+            //Find old_a and old_b such that old_a**old_b=a e.g. 2**4=16 if 16 ia my main base ie. a
             for (int old_a=2;old_a<=(int)Math.sqrt(a);old_a++)
             {   int copy_a=a;   
                 old_b=0;
