@@ -35,3 +35,5 @@ for a in range(2,n+1):
         if ((a**b) not in list):
             list.append(a**b)
 print(len(list))
+
+#Try 2 in Java
