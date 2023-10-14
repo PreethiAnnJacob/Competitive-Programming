@@ -31,7 +31,61 @@ For N=10, we have primes as {2,3,5,7} and the sum is 17.
 
 */
 
-//Try 1: TC:5/8; e testcase error due to TLE
+// //Try 1: TC:5/8; rest testcase error due to TLE
+// import java.io.*;
+// import java.util.*;
+// import java.text.*;
+// import java.math.*;
+// import java.util.regex.*;
+
+// public class Solution {
+//     public static boolean isPrime(int n)
+//     {   for(int i=2;i<=n/2;i++)
+//             if (n%i==0)    return false;
+//         return true;
+//     }
+//     public static void main(String[] args) {
+//         Scanner in = new Scanner(System.in);
+//         int t = in.nextInt();
+//         for(int a0 = 0; a0 < t; a0++){
+//             int n = in.nextInt();
+//             int sum=0;
+//             for(int i=2;i<=n;i++)
+//                 if (isPrime(i)) 
+//                     sum=sum+i;
+//             System.out.println(sum);
+//         }
+//     }
+// }
+
+// //Try 2: TC:6/8, Rest_Error:TLE // Only change n/2 to sqrt(n)
+// import java.io.*;
+// import java.util.*;
+// import java.text.*;
+// import java.math.*;
+// import java.util.regex.*;
+
+// public class Solution {
+//     public static boolean isPrime(int n)
+//     {   for(int i=2;i<=Math.sqrt(n);i++)
+//             if (n%i==0)    return false;
+//         return true;
+//     }
+//     public static void main(String[] args) {
+//         Scanner in = new Scanner(System.in);
+//         int t = in.nextInt();
+//         for(int a0 = 0; a0 < t; a0++){
+//             int n = in.nextInt();
+//             int sum=0;
+//             for(int i=2;i<=n;i++)
+//                 if (isPrime(i)) 
+//                     sum=sum+i;
+//             System.out.println(sum);
+//         }
+//     }
+// }
+
+//Try 3: TC:8/8 //Works only if sum[] is long. Doesn't work with int sum[]
 import java.io.*;
 import java.util.*;
 import java.text.*;
@@ -40,20 +94,25 @@ import java.util.regex.*;
 
 public class Solution {
     public static boolean isPrime(int n)
-    {   for(int i=2;i<=n/2;i++)
+    {   for(int i=2;i<=Math.sqrt(n);i++)
             if (n%i==0)    return false;
         return true;
+    }
+    public static void precalculate(long sum[])
+    {   sum[1]=0;
+        for(int n=2;n<=1000000;n++)
+        {   if (isPrime(n)) sum[n]=sum[n-1]+n;
+            else            sum[n]=sum[n-1];
+        }
     }
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int t = in.nextInt();
+        long sum[]=new long[1000001];
+        precalculate(sum);
         for(int a0 = 0; a0 < t; a0++){
             int n = in.nextInt();
-            int sum=0;
-            for(int i=2;i<=n;i++)
-                if (isPrime(i)) 
-                    sum=sum+i;
-            System.out.println(sum);
+            System.out.println(sum[n]);
         }
     }
 }
