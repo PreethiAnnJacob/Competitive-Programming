@@ -62,7 +62,53 @@ Sample Output
 //     }
 // }
 
-//Try 3:TC:6/21 failed duw to  Wrong Answer
+// //Try 3:TC:6/21 failed due to  Wrong Answer
+// import java.io.*;
+// import java.util.*;
+
+// public class Solution {
+
+//     public static void main(String[] args) {
+//         Scanner in = new Scanner(System.in);
+//         int n = in.nextInt();
+//         int result=0;
+//         for (int a=2;a<=n;a++)
+//         {   boolean found=false;//flag for another smaller base
+//             int old_b=0;
+//             //Find old_a and old_b such that old_a**old_b=a e.g. 2**4=16
+//             for (int old_a=2;old_a<=(int)Math.sqrt(a);old_a++)
+//             {   int copy_a=a;   
+//                 old_b=0;
+//                 while (copy_a%old_a==0)
+//                 {   old_b++;
+//                     copy_a=copy_a/old_a;
+//                 }
+//                 if (copy_a==1)
+//                 {   found=true; 
+//                     break;
+//                 }
+//             }
+//             int b=2;
+//             int count = n-b+1;
+//             if (found) //e.g. 8**4=4**6 means 8**4=4**6=2**12.Here a=8,b=4.OldA=2.OldB=3 since 2**3=8
+//             {   for(int ptr_b=2;ptr_b<=n;ptr_b++) //e.g. 2,3,4,5,6,7, say now at 4
+//                 {   for(int ptr_old_b=old_b-1; ptr_old_b>=1; ptr_old_b--)//2,1, say now at 2
+//                     {   if( (old_b*ptr_b) % ptr_old_b == 0)// (3*4)%2
+//                         {   if ( ((old_b*ptr_b)/ptr_old_b) <=n ) //(3*4/2)=6 <7 So this term is repetition
+//                             {   count--;break;
+//                             }
+//                         }
+//                     }
+//                 }
+//             } 
+//             result = result+count;
+//         }
+//         System.out.println(result);
+//     }
+// }
+
+// Try 4: 21/21 
+// Reason: Issue started somewhere between n=49k and 50k --Negative values where shown. Change datatype of 'result' from 'int' to 'long'. 
 import java.io.*;
 import java.util.*;
 
@@ -71,7 +117,7 @@ public class Solution {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
-        int result=0;
+        long result=0;
         for (int a=2;a<=n;a++)
         {   boolean found=false;//flag for another smaller base
             int old_b=0;
