@@ -1,5 +1,4 @@
 //Try 1: TC 3/6. Rest:TLE
-
 import java.io.*;
 import java.util.*;
 
@@ -38,15 +37,14 @@ public class Solution {
     static boolean isCurious(int numerator,int denominator,int n,int k,int digCount[][], int unreduced_numerator,int unreduced_denominator)
     {   if (numerator>=denominator) return false;
         if (k==0)
-        {   
-            if (numerator==unreduced_numerator) return false;
+        {   if (numerator==unreduced_numerator) return false;
             if (denominator==unreduced_denominator) return false;
             double fraction1 = denominator*1.0/numerator;
             double fraction2 = unreduced_denominator*1.0/unreduced_numerator;
             if (fraction1==fraction2)   return true;
             else                        return false;
         }
-        boolean curious=false;
+        //boolean curious=false;
         for (int digit=0;digit<=9;digit++)
         {   for (int h=1;h<=digCount[2][digit];h++)
             {   for (int i=1;i<=digCount[0][digit];i++)
@@ -63,9 +61,7 @@ public class Solution {
                         newDigCount[1][digit]--;
                         newDigCount[2][digit]--;
                         
-                        boolean curiousNow=isCurious(newNumerator,newDenominator,n-1,k-1,newDigCount,unreduced_numerator,unreduced_denominator);
-                        curious=curious | curiousNow;
-                        if (curiousNow) return true;
+                        if (isCurious(newNumerator,newDenominator,n-1,k-1,newDigCount,unreduced_numerator,unreduced_denominator))   return true;
                     }
                 }
             }
