@@ -37,9 +37,7 @@ public class Solution {
     static boolean isCurious(int numerator,int denominator,int n,int k,int digCount[][], int unreduced_numerator,int unreduced_denominator)
     {   if (numerator>=denominator) return false;
         if (k==0)
-        {   if (numerator==unreduced_numerator) return false;
-            if (denominator==unreduced_denominator) return false;
-            double fraction1 = denominator*1.0/numerator;
+        {   double fraction1 = denominator*1.0/numerator;
             double fraction2 = unreduced_denominator*1.0/unreduced_numerator;
             if (fraction1==fraction2)   return true;
             else                        return false;
